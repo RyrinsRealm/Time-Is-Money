@@ -18,6 +18,11 @@ you clear your bags and price your mats on the Auction House — all in one tidy
 
 No dependencies. Built for interface **120100** (Midnight), with **120007** still supported.
 
+**Forever (1.60.1):** also declares interface **16001**, so it loads in the `_forever_`
+client. Forever is a Mainline game type — its API is a superset of retail's, and every
+function this addon calls is present — but farm-target intel and Auction House pricing are
+untested there. Treat Forever support as beta within a beta.
+
 ---
 
 ## Getting started
