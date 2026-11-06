@@ -99,10 +99,21 @@ SG.Print = Print
 
 local function Today() return date("%Y-%m-%d") end
 
+-- Coin string, newest API first. The bare global GetCoinTextureString is gone on
+-- Forever (1.60.1) -- it lives at C_CurrencyInfo.GetCoinTextureString, and the
+-- client's own dump exports only the namespaced one. The global is kept as the
+-- fallback for older clients, and the plain "%dg" below for neither.
+local function CoinString(copper)
+  if C_CurrencyInfo and C_CurrencyInfo.GetCoinTextureString then
+    return C_CurrencyInfo.GetCoinTextureString(copper)
+  end
+  if GetCoinTextureString then return GetCoinTextureString(copper) end
+  return nil
+end
+
 local function Money(copper)
   copper = math.floor(copper or 0)
-  if GetCoinTextureString then return GetCoinTextureString(copper) end
-  return string.format("%dg", math.floor(copper / 10000))
+  return CoinString(copper) or string.format("%dg", math.floor(copper / 10000))
 end
 SG.Money = Money
 
@@ -114,8 +125,7 @@ local function MoneyShort(copper)
   local g = math.floor(copper / 10000)
   if g >= 1000 then copper = g * 10000
   elseif g >= 1 then copper = copper - (copper % 100) end
-  if GetCoinTextureString then return GetCoinTextureString(copper) end
-  return string.format("%dg", g)
+  return CoinString(copper) or string.format("%dg", g)
 end
 SG.MoneyShort = MoneyShort
 
