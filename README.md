@@ -20,8 +20,9 @@ No dependencies. Built for interface **120100** (Midnight), with **120007** stil
 
 **Forever (1.60.1):** also declares interface **16001**, so it loads in the `_forever_`
 client. Forever is a Mainline game type — its API is a superset of retail's, and every
-function this addon calls is present — but farm-target intel and Auction House pricing are
-untested there. Treat Forever support as beta within a beta.
+function this addon calls is present. Auction House pricing is confirmed working there: a
+scan populates prices from your own realm's economy. Farm-target intel is still untested,
+so treat Forever support as beta within a beta.
 
 ---
 

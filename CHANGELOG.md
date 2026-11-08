@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.8
+
+WoW: Forever compatibility. Nothing here changes retail behaviour.
+
+### WoW: Forever (1.60.1)
+- Time Is Money declares interface 16001 and loads in the Forever client. Forever is a Mainline game type and its API is a superset of retail's, so the addon runs there with one fix.
+- **Coin amounts work.** Forever dropped the bare `GetCoinTextureString` global that retail still carries, so every gold figure in the window — run totals, gold per hour, loot values — was calling a function that was not there. They go through `C_CurrencyInfo` now.
+- **Auction House pricing is confirmed working on Forever.** A scan populates prices from your own realm's economy, tested on a live Forever server. The README listed AH pricing as untested there and no longer does. Farm-target intel is still unverified on that client, so the beta caveat stays for now.
+
 ## 1.0.7
 
 Patch 12.1 / Season 2 pass. Verified on live build 69189.
